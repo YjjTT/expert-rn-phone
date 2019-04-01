@@ -63,6 +63,22 @@ export default class HomePage extends Component<Props> {
                 )
             }}
         />
+        <Button 
+            title={'Go to DrawerNav'}
+            onPress={()=>{
+                navigation.navigate(
+                    'DrawerNav',
+                )
+            }}
+        />
+        <Button 
+            title={'Go to FlatList'}
+            onPress={()=>{
+                navigation.navigate(
+                    'Page5',
+                )
+            }}
+        />
       </View>
     );
   }

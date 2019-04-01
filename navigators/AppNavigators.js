@@ -1,9 +1,12 @@
 import {
   createStackNavigator,
   createBottomTabNavigator,
-  createMaterialTopTabNavigator
+  createMaterialTopTabNavigator,
+  createDrawerNavigator,
+  DrawerItems,
+  createSwitchNavigator
 } from "react-navigation";
-import { Button, Platform } from "react-native";
+import { Button, Platform, ScrollView, SafeAreaView } from "react-native";
 import React from "react";
 import HomePage from "../Page/HomePages";
 import Page1 from "../Page/Page1";
@@ -11,7 +14,42 @@ import Page2 from "../Page/Page2";
 import Page3 from "../Page/Page3";
 import Page4 from "../Page/Page4";
 import Page5 from "../Page/Page5";
+import Login from '../Page/Login';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+
+const DrawerNav = createDrawerNavigator({
+  Page4: {
+    screen: Page4,
+    navigationOptions:{
+      drawerLabel: 'Page4',
+      drawerIcon: ({tintColor})=>(
+        <MaterialIcons name={'drafts'} size={24} style={{color: tintColor}}/>
+      )
+    }
+  },
+  Page5: {
+    screen: Page5,
+    navigationOptions:{
+      drawerLabel: 'Page5',
+      drawerIcon: ({tintColor})=>(
+        <MaterialIcons name={'move-to-inbox'} size={24} style={{color: tintColor}}/>
+      )
+    }
+  }
+}, {
+  initialRouteName: 'Page4',
+  contentOptions:{
+    activeTintColor: '#e91e63'
+  },
+  contentComponent: (props) => (
+    <ScrollView style={{backgroundColor:'#789', flex: 1}}>
+      <SafeAreaView forceInset={{top: 'always', horizontal:'never'}}>
+        <DrawerItems {...props}/>
+      </SafeAreaView>
+    </ScrollView>
+  )
+})
 
 const AppTopNavigator = createMaterialTopTabNavigator({
   Page1: {
@@ -63,6 +101,7 @@ const AppTopNavigator = createMaterialTopTabNavigator({
     }
   }
 });
+
 const AppBottomNavigator = createBottomTabNavigator({
   Page1: {
     screen: Page1,
@@ -105,6 +144,25 @@ const AppBottomNavigator = createBottomTabNavigator({
     activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
   }
 });
+
+/////////////
+
+const AppStack = createStackNavigator({
+  Home: { screen: HomePage },
+  Page1: { screen: Page1 }
+})
+const AuthStack = createStackNavigator({
+  Login: { screen: Login },
+},{
+  navigationOptions:{
+    // header: null,
+  }
+})
+export default createSwitchNavigator(
+  { Auth: AuthStack, App: AppStack },
+  { initialRouteName: 'Auth' }
+)
+////////////
 
 export const AppStackNavigator = createStackNavigator({
   HomePage: {
@@ -159,6 +217,12 @@ export const AppStackNavigator = createStackNavigator({
     screen: AppTopNavigator,
     navigationOptions:{
       title: 'Top'
+    }
+  },
+  DrawerNav:{
+    screen: DrawerNav,
+    navigationOptions:{
+      title: 'DrawerNav'
     }
   }
 });
