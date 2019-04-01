@@ -21,7 +21,9 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>hello world</Text>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue',marginRight: 20}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'skyblue',marginRight: 20}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'steelblue',marginRight: 20}} />
       </View>
     );
   }
@@ -29,10 +31,11 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 100,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   },
   welcome: {
     fontSize: 40,
