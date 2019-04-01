@@ -12,6 +12,10 @@ import { Button } from 'react-native'
 
 type Props = {};
 export default class HomePage extends Component<Props> {
+    static navigationOptions = {
+        title: 'Home',
+        headerBackTitle: '返回' // 设置返回此页面的返回按钮标题, 有长度限制
+    }
   render() {
     const { navigation } = this.props;
     return (
@@ -30,7 +34,7 @@ export default class HomePage extends Component<Props> {
             title={'Go to Page2'}
             onPress={()=>{
                 navigation.navigate(
-                    'Page1'
+                    'Page2'
                 )
             }}
         />
@@ -38,7 +42,7 @@ export default class HomePage extends Component<Props> {
             title={'Go to Page3'}
             onPress={()=>{
                 navigation.navigate(
-                    'Page1',
+                    'Page3',
                     {name: 'dev'}
                 )
             }}

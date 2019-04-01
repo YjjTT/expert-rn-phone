@@ -1,5 +1,6 @@
 import { createStackNavigator } from 'react-navigation'
 import { Button } from 'react-native'
+import React from 'react'
 import HomePage from '../Page/HomePages'
 import Page1 from '../Page/Page1'
 import Page2 from '../Page/Page2'

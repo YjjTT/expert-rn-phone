@@ -14,7 +14,7 @@ export default class Page2 extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Page1</Text>
+        <Text style={styles.welcome}>Page2</Text>
       </View>
     );
   }
