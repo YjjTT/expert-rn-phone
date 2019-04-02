@@ -15,6 +15,7 @@ import Page3 from "../Page/Page3";
 import Page4 from "../Page/Page4";
 import Page5 from "../Page/Page5";
 import Login from '../Page/Login';
+import SwipealeFaltListDemo from '../Page/SwipealeFlatListDemo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
@@ -223,6 +224,12 @@ export const AppStackNavigator = createStackNavigator({
     screen: DrawerNav,
     navigationOptions:{
       title: 'DrawerNav'
+    }
+  },
+  SwipealeFaltListDemo:{
+    screen: SwipealeFaltListDemo,
+    navigationOptions:{
+      title: 'SwipealeFaltListDemo'
     }
   }
 });

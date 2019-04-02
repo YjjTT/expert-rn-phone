@@ -79,6 +79,14 @@ export default class HomePage extends Component<Props> {
                 )
             }}
         />
+        <Button 
+            title={'Go to SwipealeFaltList'}
+            onPress={()=>{
+                navigation.navigate(
+                    'SwipealeFaltListDemo',
+                )
+            }}
+        />
       </View>
     );
   }
