@@ -10,41 +10,19 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, FlatList, RefreshControl,ActivityIndicator, SwipeableFlatList,TouchableHighlight,Alert, SectionList} from 'react-native';
 
 type Props = {};
-const City_Names = ['北京', '上海', '广州', '深圳','沈阳', '安徽', '大连','合肥','石家庄','河北','天津']
+const City_Names = [{data:['北京', '上海', '广州', '深圳'], title: '一线城市'}, {data: ['沈阳', '安徽', '大连','合肥','石家庄','河北','天津'], title:'二线城市'}]
 
-export default class SwipealeFaltListDemo extends Component<Props> {
+export default class SectionListDemo extends Component<Props> {
   _renderItem = (data) => (
     <View style={styles.item}>
       <Text style={styles.itemText}>{data.item}</Text>
     </View>
   )
-  _renderQuickActions({item}) {
-    return (
-      <View style={styles.actionsContainer}>
-        <TouchableHighlight
-          style={styles.actionButton}
-          onPress={() => {
-            Alert.alert(
-              'Tips',
-              'You could do something with this edit action!',
-            );
-          }}>
-          <Text style={styles.actionButtonText}>Edit</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={[styles.actionButton, styles.actionButtonDestructive]}
-          onPress={() => {
-            Alert.alert(
-              'Tips',
-              'You could do something with this remove action!',
-            );
-          }}>
-          <Text style={styles.actionButtonText}>Remove</Text>
-        </TouchableHighlight>
-      </View>
-    );
-  }
-
+  _renderSectionHeader = ({section}) => (
+    <View style={styles.sectionHeader}>
+        <Text style={{fontSize:24}}>{section.title}</Text>
+    </View>
+)
   constructor(props) {
     super(props);
   
@@ -85,27 +63,25 @@ export default class SwipealeFaltListDemo extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <SwipeableFlatList 
-          data={this.state.dataArray}
+        <SectionList
+          sections={City_Names}
+          renderSectionHeader={(data)=>this._renderSectionHeader(data)}
           renderItem={(data)=>this._renderItem(data)}
-          renderQuickActions={(data)=>this._renderQuickActions(data)}
-          bounceFirstRowOnMount={true}
-          maxSwipeDistance={160}
           keyExtractor={(data, index) => index.toString()}
-          refreshControl={
-            <RefreshControl 
-              title={'Loading'}
-              tintColor={'red'}
-              refreshing={this.state.isLoading}
-              onRefresh={()=>{
-                this.loadData(true);
-              }}
-            />
-          }
-          ListFooterComponent={()=>this.getIndicator()}
-          onEndReached={()=>{
-            this.loadData(false)
-          }}
+        //   refreshControl={
+        //     <RefreshControl 
+        //       title={'Loading'}
+        //       tintColor={'red'}
+        //       refreshing={this.state.isLoading}
+        //       onRefresh={()=>{
+        //         this.loadData(true);
+        //       }}
+        //     />
+        //   }
+        //   ListFooterComponent={()=>this.getIndicator()}
+        //   onEndReached={()=>{
+        //     this.loadData(false)
+        //   }}
         />
       </View>
     );
@@ -118,8 +94,6 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: '#169',
     height: 200,
-    marginRight: 15,
-    marginLeft: 15,
     marginBottom: 15,
     alignItems: 'center',
     justifyContent: 'center',
@@ -151,4 +125,10 @@ const styles = StyleSheet.create({
   actionButtonText: {
     textAlign: 'center',
   },
+  sectionHeader:{
+      height: 49,
+      backgroundColor: '#93ebbe',
+      justifyContent: 'center',
+      alignItems: 'center'
+  }
 });

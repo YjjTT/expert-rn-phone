@@ -87,6 +87,14 @@ export default class HomePage extends Component<Props> {
                 )
             }}
         />
+        <Button 
+            title={'Go to SectionListDemo'}
+            onPress={()=>{
+                navigation.navigate(
+                    'SectionListDemo',
+                )
+            }}
+        />
       </View>
     );
   }
